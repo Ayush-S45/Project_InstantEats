@@ -101,13 +101,15 @@ const RestaurantList = () => {
 
         <div className="col-md-9">
           <div className="row">
-            {filteredRestaurants.length > 0 ? (
-              filteredRestaurants.map(restaurant => (
-                <div key={restaurant.id} className="col-md-4 mb-4">
-                  <RestaurantCard restaurant={restaurant} />
-                </div>
-              ))
-            ) : (
+{filteredRestaurants.length > 0 ? (
+  filteredRestaurants.map(restaurant => (
+    <div key={restaurant.id} className="col-md-4 mb-4">
+      <Link to={`/instanteats/restaurant/${restaurant.id}`}>
+        <RestaurantCard restaurant={restaurant} />
+      </Link>
+    </div>
+  ))
+) : (
               <div className="col-12 text-center py-5">
                 <h4>No restaurants match your filters</h4>
                 <button

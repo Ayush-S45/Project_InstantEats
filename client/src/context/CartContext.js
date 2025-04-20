@@ -21,12 +21,30 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const decreaseQuantity = (item) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(i => i.id === item.id);
+      if (existingItem) {
+        if (existingItem.quantity === 1) {
+          // Remove item if quantity is 1
+          return prevItems.filter(i => i.id !== item.id);
+        } else {
+          // Decrease quantity by 1
+          return prevItems.map(i =>
+            i.id === item.id ? { ...i, quantity: i.quantity - 1 } : i
+          );
+        }
+      }
+      return prevItems;
+    });
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, clearCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, decreaseQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );
