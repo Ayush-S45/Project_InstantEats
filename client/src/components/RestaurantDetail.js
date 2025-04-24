@@ -27,9 +27,10 @@ const RestaurantDetail = () => {
   };
 
   const getDishQuantity = (dishId) => {
-    const item = cartItems.find(i => i.id === dishId);
+    const item = cartItems.find(i => i.id === dishId && i.restaurantName === restaurant.name);
     return item ? item.quantity : 0;
-  };
+    };
+  
 
   return (
     <div className="container mt-4">
